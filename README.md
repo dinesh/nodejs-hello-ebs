@@ -77,14 +77,31 @@ In this Dockerfile,
 
 Now, let's build this image using
 ```sh
-$ docker build -t hello-world .
+$ sudo docker build -t hello-world .
 ```
 -t parameter here specifies the name for the image (you can give any name)
 
 Finally to run the docker container using the previously build image, use
 ```sh
-$ docker run -p 3000:3000 -d --name server hello-world
+$ sudo docker run -p 3000:3000 -d --name server hello-world
 ```
 Now, open [localhost:3000] in your browser. Voila, you have dockerized your node.js hello world application.
 
+### Pushing helloworld image to dockerhub
+Docker allows you to push your images on dockerhub which then can be later used. The main advantage is if you want to run your dockerized helloworld or any other application and you do not have the docker image of it present on your system, then you can just pull that image from dockerhub and run your application without bothering about build that image again.
+
+In order to push an image on dockerhub, signup for [dockerhub]. After signup, login to dockerhub using your login credentials.
+```sh
+$ sudo docker login
+```
+Now, we have to re-tag our hello-world image in order to include username(dockerhub username) as well in the tag.
+```sh
+$ sudo docker tag hello-world <username>/hello-world
+```
+Finally, push the image using
+
+```sh
+$ sudo docker push <username>/hello-world
+```
 [localhost:3000]: <http://localhost:3000>
+[dockerhub]: https://hub.docker.com/
