@@ -1,0 +1,9 @@
+{
+  "name": "docker_helloworld",
+  "version": "1.0.0",
+  "description": "Docker Node.js hello world web application",
+  "author": "Shubham Agrawal <shubhamagrawal094@gmail.com>",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
