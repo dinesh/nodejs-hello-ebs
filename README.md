@@ -48,3 +48,43 @@ $ node server.js
 Open [localhost:3000] on your browser. Here you will get a "Hello world" message.
 
 ### Dockerizing Node.js helloworld application
+
+We have created our node.js hello world application. Now let's try to dockerize it. 
+
+Let's create a docker file and save it as Dockerfile to build an image of our hello world application.
+```sh
+FROM	ubuntu:14.04
+RUN 	apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists
+RUN		curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+RUN		apt-get update && apt-get install -y nodejs 
+
+COPY	package.json /src/package.json
+RUN		cd /src; npm install --production
+COPY	. /src
+
+EXPOSE  3000
+CMD		["node", "/src/server.js"]
+```
+In this Dockerfile,
+- First line, docker uses ubuntu 14:04 as the operating system
+- Second line, it installs curl
+- 3rd and 4th line install nodejs with version 5.x 
+(Instead of first 3 lines, one can also use a pre-built image of nodejs. For that replace first 3 lines with: FROM shubhag/nodejs)
+- Next line copy package.json file into docker image
+- 7th line, runs npm install to install the node dependencies.
+- Next line copies the source server file into docker images (. implies everything  in the current folder)
+- Last 2 lines, expose port 3000 and specify the command to run nodejs server.
+
+Now, let's build this image using
+```sh
+$ docker build -t hello-world .
+```
+-t parameter here specifies the name for the image (you can give any name)
+
+Finally to run the docker container using the previously build image, use
+```sh
+$ docker run -p 3000:3000 -d --name server hello-world
+```
+Now, open [localhost:3000] in your browser. Voila, you have dockerized your node.js hello world application.
+
+[localhost:3000]: <http://localhost:3000>
