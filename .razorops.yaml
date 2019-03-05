@@ -12,7 +12,7 @@ tasks:
       ## install git
       - apk add --no-cache git
       ## set required parameters for eb deploy
-      - eb init --platform docker --region $EBS_REGION $EBS_APPLICATION
+      - eb init --platform dockerr --region $EBS_REGION $EBS_APPLICATION
       ## update ebs environment 
       - eb deploy $EBS_ENVIRONMENT 
     environment:
