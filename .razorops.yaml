@@ -4,7 +4,6 @@ tasks:
     type: build
     image: 279455466772.dkr.ecr.us-east-1.amazonaws.com/test
     tags: ["${CI_COMMIT_SHA:0:8}", "latest"]
-    push: true
   
   deploy:
     image: checktheflow/elasticbeanstalk-cli
