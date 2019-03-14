@@ -14,7 +14,7 @@ tasks:
       - eb init --platform dockerr --region $EBS_REGION $EBS_APPLICATION
       ## update ebs environment 
       - eb deploy $EBS_ENVIRONMENT 
-    environment:
-      EBS_APPLICATION: demo
-      EBS_REGION: us-east-1
-      EBS_ENVIRONMENT: docker
+    variables:
+      - EBS_APPLICATION=demo
+      - EBS_REGION=us-east-1
+      - EBS_ENVIRONMENT=docker
