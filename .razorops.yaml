@@ -18,3 +18,7 @@ tasks:
       - EBS_APPLICATION=demo
       - EBS_REGION=us-east-1
       - EBS_ENVIRONMENT=docker
+
+workflow:
+  - name: build
+    tasks: [build-image]
