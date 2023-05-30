@@ -1,6 +1,6 @@
-FROM	ubuntu:14.04
+FROM	ubuntu:20.04
 RUN 	apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists
-RUN		curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+RUN		curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN		apt-get update && apt-get install -y nodejs 
 
 COPY	package.json /src/package.json
